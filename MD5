@@ -1,0 +1,15 @@
+67b0fe7a92efa94346955ca652193837 *DESCRIPTION
+de627aa0bf6ffcc62f8211abfbddec4e *NAMESPACE
+f92817b345d2fc1031840ac7d3611a86 *R/betapower.R
+46fb6bbebd80b9bd75f3ddd0e5e6e738 *R/plot_betapower.R
+bf0e7f2a3ddea2bb5b62d42ba5c17d5c *R/plot_samplesize.R
+0c1bff83b8df8c0ffd37a4e2405dce15 *R/samplesize.R
+219037bbf863672288927fb0d540b504 *build/vignette.rds
+bcaafbf28c4261f6cc0a7625aa2cab13 *inst/doc/BetaPASS.R
+f60a68a785b56b0453568e73cd3efc3d *inst/doc/BetaPASS.Rmd
+0fe91668687de2d17825f14a3f7239c9 *inst/doc/BetaPASS.html
+37e6dadd4aea6d014c2d6a30e38faca7 *man/betapower.Rd
+af5cb105e8276d101b60b7bf7c78062b *man/plot_betapower.Rd
+7d94dedb53c59ab164f5c771489125fa *man/plot_samplesize.Rd
+838ceca9e9ecb466bb217d40cb7da38f *man/samplesize.Rd
+f60a68a785b56b0453568e73cd3efc3d *vignettes/BetaPASS.Rmd
