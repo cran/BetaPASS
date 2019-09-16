@@ -10,43 +10,41 @@ trials = 100, seed = 1, link.type="logit",
 equal.precision=TRUE, sd1 = NULL)
 }
 \arguments{
-\item{mu0}{the mean for the control group}
+\item{mu0}{mean for the control group}
 
-\item{sd0}{the standard deviation for the control group}
+\item{sd0}{standard deviation for the control group}
 
-\item{mu1.start}{the starting value of mean for the treatment group under the alternative mu1}
+\item{mu1.start}{starting value of mean for the treatment group under the alternative mu1}
 
-\item{mu1.end}{the ending value of mean for the treatment group under the alternative mu1}
+\item{mu1.end}{ending value of mean for the treatment group under the alternative mu1}
 
-\item{mu1.by}{the step length of mean for the treatment group under the alternative mu1}
+\item{mu1.by}{step length of mean for the treatment group under the alternative mu1}
 
-\item{ss.start}{the starting value of sample size}
+\item{ss.start}{starting value of sample size}
 
-\item{ss.end}{the ending value of sample size}
+\item{ss.end}{ending value of sample size}
 
-\item{ss.by}{the step length of sample size}
+\item{ss.by}{step length of sample size}
 
-\item{sig.level}{significant level; default value is 0.05}
+\item{sig.level}{significant level of test; default value is 0.05}
 
-\item{trials}{the number of trials}
+\item{trials}{number of trials}
 
-\item{seed}{the seed used in the simulation}
+\item{seed}{seed used in the simulation}
 
-\item{link.type}{the type of link used in the beta regression. Default value is "logit", or you can use "all" or choose one or more of the following: "logit", "probit", "cloglog", "cauchit", "log", "loglog"}
+\item{link.type}{type of link used in the beta regression. Default value is "logit", or you can use "all" or choose one or more of the following: "logit", "probit", "cloglog", "cauchit", "log", "loglog"}
 
 \item{equal.precision}{equal dispersion parameter assumption in simulation}
 
-\item{sd1}{the standard deviation for the treatment group. Only applicable when equal.precision = FALSE}
+\item{sd1}{standard deviation for the treatment group. Only applicable when equal.precision = FALSE}
 }
 \value{
-Return a matrix with 7 to 12 columns: 
-\item{power.of.GLM: link name}{the power using regression method; it will return the power with every links if you use link.type = "all" statement.}
-\item{power.of.Wilcoxon.test}{the power from Wilcoxon Rank sum test.}
+Return a betapower object including basic settings (mean and standard deviation for the control group, 
+significant level, number of trials and link types), and a matrix of estimated power with given sample size and mu1.
+\item{beta regression(link name)}{estimated power using beta regression method; it will return the power with every links if you use link.type = "all" statement.}
+\item{Wilcoxon}{estimated power from Wilcoxon Rank sum test.}
 \item{sample size}{sample size.} 
-\item{mu1}{the mean for the treatment group under the alternative.}
-\item{mu0}{the mean for the control group.}
-\item{sd0}{the standard deviation for the control group.}
-\item{trials}{the number of trials.}
+\item{mu1}{mean for the treatment group under the alternative.}
 }
 \description{
 Find the power for a given sample size when testing the null hypothesis that the means for the control and treatment groups are equal against a two-sided alternative.
@@ -58,9 +56,27 @@ You can fix the alternative and vary sample size to match a desired power;
 You can fix the sample size and vary the alternative to see which will match a desired power;
 You can vary both;
 Start with a small number of trials (say 100) to determine the rough range of sample sizes or alternatives;
-Use a larger number of trials (say 1000) to get better estimates.
+Use a larger number of trials (say 1000) to get better estimates.\cr
+The plot function will return different plots depends on "by" statement. 
+Type of link used in the beta regression. You can choose one or more of the following: "logit", "probit", "cloglog", "cauchit", "log", "loglog", "all"\cr
+by = "linktype": return graphs that plot power against mu1,
+where mu1 is the mean for the treatment group under the alternative.
+The number of plots will vary depending on the number of link types selected with the last plot showing power based on Wilcoxon Rank Sum Test.
+The first one or several plots show comparisons of power with different sample size, using GLM method with one or several link types.
+The last plot shows a comparison of the power with different sample size using Wilcoxon Rank Sum Test.
+Y-axis denotes power and X-axis denotes mu1, the mean for the treatment group under the alternative.\cr
+by = "samplesize": return a number of plots equal to the number of sample sizes tested.
+Each plot compares power calculated with different link types and the Wilcoxon Rank Sum Test.
+Y-axis denotes power and X-axis denotes mu1, the mean for the treatment group under the alternative.\cr
+by = "mu1": return a number of plots equal to the number of mu1 used in the procedure.
+Each plot compares power calculated with different link types and the Wilcoxon Rank Sum Test.
+Y-axis denotes power and X-axis denotes sample size.\cr
 }
 \examples{
-betapower(mu0 = 0.56, sd0 = 0.255, mu1.start = .70, mu1.end = .75, mu1.by = .05, 
-ss.start = 30, ss.end = 50, ss.by = 20, trials = 20)
+BPmat <- betapower(mu0 = 0.56, sd0 = 0.255, mu1.start = .70, mu1.end = .75, mu1.by = .05, 
+ss.start = 30, ss.end = 50, ss.by = 20, trials = 100)
+## show the results
+BPmat
+## add plot
+plot(BPmat, link.type = "logit", by = "mu1")
 }

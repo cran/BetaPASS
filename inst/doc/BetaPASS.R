@@ -6,8 +6,8 @@ knitr::opts_chunk$set(
 
 ## ---- eval=FALSE---------------------------------------------------------
 #  if (!require(BetaPASS)){
-#    devtools::install_github("CastleLi/BetaPASS")
-#    Needed_packages <- c("Rcpp","reshape","betareg","ggpubr","ggplot","lmtest")
+#    devtools::install_github("CastleLi/draft/BetaPASS")
+#    Needed_packages <- c("Rcpp","betareg","ggplot")
 #    install.packages(Needed_packages)
 #  }
 
@@ -20,10 +20,10 @@ Power.mat <- betapower(mu0 = 0.56, sd0 = 0.255,
                        link.type = c("logit"))
 
 ## ---- echo=FALSE, results='asis'-----------------------------------------
-knitr::kable(Power.mat)
+knitr::kable(Power.mat$Power.matrix)
 
 ## ---- fig.show='hold', fig.width = 9, fig.height =6----------------------
-plot_betapower(Power.mat, link.type = "logit", by = "mu1")
+plot(Power.mat, link.type = "logit", by = "mu1")
 
 ## ------------------------------------------------------------------------
 samplesize(mu0=0.56, sd0=0.255, mu1.start = 0.75, power.start = 0.8, trials = 40,
@@ -36,8 +36,8 @@ SS.mat <- samplesize(mu0=0.56, sd0=0.255,
                        trials = 40, link.type = c("logit","wilcoxon"))
 
 ## ---- echo=FALSE, results='asis'-----------------------------------------
-knitr::kable(SS.mat)
+knitr::kable(SS.mat$Power.matrix)
 
 ## ---- fig.show='hold', fig.width = 9, fig.height =6----------------------
-plot_samplesize(SS.mat, link.type = c("logit","wilcoxon"))
+plot(SS.mat, link.type = c("logit","wilcoxon"))
 

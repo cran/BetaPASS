@@ -67,8 +67,8 @@ In this case, you can run following codes (if necessary, first install the BetaP
 
 ```{r, eval=FALSE}
 if (!require(BetaPASS)){
-  devtools::install_github("CastleLi/BetaPASS")
-  Needed_packages <- c("Rcpp","reshape","betareg","ggpubr","ggplot","lmtest")
+  devtools::install_github("CastleLi/draft/BetaPASS")
+  Needed_packages <- c("Rcpp","betareg","ggplot")
   install.packages(Needed_packages)
 }
 ```
@@ -87,13 +87,13 @@ Power.mat <- betapower(mu0 = 0.56, sd0 = 0.255,
 The output will give the estimated power for each sample size and alternative mean combination, for both parametrical and non-parametrical approach.
 
 ```{r, echo=FALSE, results='asis'}
-knitr::kable(Power.mat)
+knitr::kable(Power.mat$Power.matrix)
 ```
 
 You can generate the plots comparing the power using the Wilcoxon Rank Sum test and GLM method with following codes:
 
 ```{r, fig.show='hold', fig.width = 9, fig.height =6}
-plot_betapower(Power.mat, link.type = "logit", by = "mu1")
+plot(Power.mat, link.type = "logit", by = "mu1")
 ```
 
 It appears that the parametric test does better(a savings of about 10% in sample size).
@@ -118,11 +118,11 @@ SS.mat <- samplesize(mu0=0.56, sd0=0.255,
 The output will give the estimated sample size for each target power and alternative mean combination.
 
 ```{r, echo=FALSE, results='asis'}
-knitr::kable(SS.mat)
+knitr::kable(SS.mat$Power.matrix)
 ```
 
 You can generate the plots comparing the sample size with following codes:
 
 ```{r, fig.show='hold', fig.width = 9, fig.height =6}
-plot_samplesize(SS.mat, link.type = c("logit","wilcoxon"))
+plot(SS.mat, link.type = c("logit","wilcoxon"))
 ```

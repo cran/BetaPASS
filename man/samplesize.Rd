@@ -10,44 +10,43 @@ trials = 100, delta = 1, seed = 1, link.type = "logit",
 equal.precision = TRUE, sd1 = NULL)
 }
 \arguments{
-\item{mu0}{the mean for the control group}
+\item{mu0}{mean for the control group}
 
-\item{sd0}{the standard deviation for the control group}
+\item{sd0}{standard deviation for the control group}
 
-\item{mu1.start}{the starting value of mean for the treatment group under the alternative mu1}
+\item{mu1.start}{starting value of mean for the treatment group under the alternative mu1}
 
-\item{mu1.end}{the ending value of mean for the treatment group under the alternative mu1}
+\item{mu1.end}{ending value of mean for the treatment group under the alternative mu1}
 
-\item{mu1.by}{the step length of mean for the treatment group under the alternative mu1}
+\item{mu1.by}{step length of mean for the treatment group under the alternative mu1}
 
-\item{power.start}{the starting value of target power}
+\item{power.start}{starting value of target power}
 
-\item{power.end}{the ending value of target power}
+\item{power.end}{ending value of target power}
 
-\item{power.by}{the step length of target power}
+\item{power.by}{step length of target power}
 
 \item{sig.level}{significant level; default value is 0.05}
 
-\item{trials}{the number of trials; default value is 100}
+\item{trials}{number of trials; default value is 100}
 
-\item{delta}{the accuracy of the result; must be integer}
+\item{delta}{accuracy of the result; must be integer}
 
-\item{seed}{the seed used in the simulation}
+\item{seed}{seed used in the simulation}
 
-\item{link.type}{default link is "logit". Other link options include: "logit", "probit", "cloglog", "log", "loglog", "wilcoxon", or you can use "all" for all types of link}
+\item{link.type}{type of link used in the beta regression. Default link is "logit". Other link options include: "logit", "probit", "cloglog", "log", "loglog", "wilcoxon", or you can use "all" for all types of link}
 
 \item{equal.precision}{equal dispersion parameter assumption in simulation}
 
-\item{sd1}{the standard deviation for the treatment group. Only applicable when equal.precision = FALSE}
+\item{sd1}{standard deviation for the treatment group. Only applicable when equal.precision = FALSE}
 }
 \value{
-Return a table including minimum sample size and power, as well as the target power and mu1:
+Return a samplesize object including basic settings (mean and standard deviation for the control group, 
+significant level, number of trials and link types), and a matrix of estimated power with given mu1 and target power.
 \item{minimum sample size: link type:}{minimum sample size for given given mu0, sd0, mu1, target power and type of link.}
 \item{minimum power: link type:}{the minimum power greater than or equal to target power.}
-\item{target power:}{the target power.}
-\item{mu1:}{mean for the treatment group under the alternative.}
-\item{mu0:}{the mean for the control group.}
-\item{sd0:}{the standard deviation for the control group.}
+\item{target power:}{target power.}
+\item{mu1:}{mean for the treatment group under alternative.}
 }
 \description{
 Find minimum sample sizes with Beta distribution and given mu0,sd0,mu1 and target powers.
@@ -57,9 +56,17 @@ The samplesize function allows you to control the number of trials in the simula
 the target power, delta, and the alternative means.
 You can fix the alternative and vary power to match a desired sample size; 
 Use default values for the number of trials for a quick view;
-Use a larger number of trials (say 1000) and a smaller delta (say 1) to get better estimates.
+Use a larger number of trials (say 1000) and a smaller delta (say 1) to get better estimates.\cr
+The plot function will return a series of plots equal to the number of mu1 used in the procedure.
+Type of link used in the beta regression. You can choose one or more of the following: "logit", "probit", "cloglog", "cauchit", "log", "loglog", "all". 
+Y-axis denotes minimum sample size and X-axis denotes minimum power.\cr
 }
 \examples{
-samplesize(mu0=0.56, sd0=0.255, mu1.start = 0.8, power.start =  0.9, trials = 25,
-link.type = c("logit","wilcoxon"))
+SSmat <- samplesize(mu0=0.56, sd0=0.255, mu1.start = 0.75, 
+power.start =  0.8, power.end = 0.9, power.by = 0.1, 
+trials = 25, link.type = c("log","wilcoxon"))
+## show the results
+SSmat
+## add plot
+plot(SSmat, link.type = c("log","wilcoxon"))
 }
