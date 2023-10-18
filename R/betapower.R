@@ -243,6 +243,7 @@ betapower <-function(mu0, sd0, mu1.start, mu1.end = NULL, mu1.by = NULL,
                      ss.start, ss.end = NULL, ss.by = NULL, sig.level = 0.05,
                      trials = 100, seed = 1, link.type="logit", 
                      equal.precision=TRUE, sd1 = NULL){
+  print("An updated version is available on CRAN as PASSED.\n Please check CRAN for more details.")
   # define link.type = "all"
   if(link.type[1]=="all"){
     link.type <- c("logit", "probit", "cloglog", "log", "loglog")

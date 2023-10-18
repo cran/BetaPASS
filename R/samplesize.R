@@ -294,6 +294,7 @@ samplesize <- function(mu0, sd0, mu1.start, mu1.end = NULL, mu1.by = NULL,
                        power.start, power.end = NULL, power.by = NULL, 
                        sig.level=0.05, trials=100, delta=1, seed=1, 
                        link.type="logit", equal.precision=TRUE, sd1=NULL){
+  print("An updated version is available on CRAN as PASSED.\n Please check CRAN for more details.")
   # provide "all" option for link types
   if(link.type[1]=="all"){
     link.type <- c("logit", "probit", "cloglog", "log", "loglog","wilcoxon")

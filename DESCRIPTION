@@ -1,7 +1,7 @@
 Package: BetaPASS
 Title: Calculate Power and Sample Size with Beta Regression
-Version: 1.1-1
-Date: 2019-09-13
+Version: 1.1-2
+Date: 2023-10-15
 Authors@R: c(person("Jinpu", "Li", email = "lijinp@health.missouri.edu", role = c("aut", "cre")),
 	person("Ryan", "Knigge", email = "rknigge@health.missouri.edu", role = "aut"),
 	person("Emily", "Leary", email = "LearyE@health.missouri.edu", role = "aut"))
@@ -15,16 +15,15 @@ Description: Power calculations are a critical component of any research study t
 Depends: R (>= 3.6)
 License: GPL (>= 2)
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 6.1.1
 Imports: betareg, ggplot2, pbapply, stats
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-09-16 18:59:43 UTC; birdn
+Packaged: 2023-10-18 20:41:13 UTC; Castle
 Author: Jinpu Li [aut, cre],
   Ryan Knigge [aut],
   Emily Leary [aut]
 Maintainer: Jinpu Li <lijinp@health.missouri.edu>
 Repository: CRAN
-Date/Publication: 2019-09-16 19:10:02 UTC
+Date/Publication: 2023-10-18 21:00:08 UTC
